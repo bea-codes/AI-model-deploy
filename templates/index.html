@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-	<title>Projeto final IA</title>
-</head>
-<body>
-	<p>Projeto final da disciplina de Inteligência Artficial Aplicada</p>
-	<form action=""></form>
-</body>
-<style>
-
-</style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <title>Projeto final IA</title>
+  </head>
+  <body>
+    <div class="wrapper flex">
+      <h1>Disciplina Inteligência Artficial Aplicada - Projeto final</h1>
+      <form action="{{url_for('predict')}}" method="post" class="flex" enctype=multipart/form-data>
+        <p>Input vai ser ou um arquivo ou um texto...</p>
+        <input type="text" name="input" required="required"/>
+        <input type="file" name=file_input id="" required="required"/>
+        <button type="submit" value="Upload">Enviar</button>
+      </form>
+      <div class="prediction">
+		<h2>Predição do modelo</h2>
+		{{prediction_result}}
+	</div>
+    </div>
+  </body>
+  <style></style>
 </html>
