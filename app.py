@@ -65,6 +65,7 @@ def predict():
         file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
 
     class_predictions = alexnetPredict(f"./images/{filename}")
+    os.remove(f"./images/{filename}")
 
     return render_template("index.html", prediction_result=class_predictions)
 
