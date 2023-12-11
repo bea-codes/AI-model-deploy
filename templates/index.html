@@ -14,26 +14,25 @@
       <h1>Disciplina Inteligência Artficial Aplicada - Projeto final</h1>
       <div class="flex">
       <p class="grupo">Grupo: Beatriz Barbosa, Davi Galdino,  Gabriela Silva, Samuel Lemos e Suelen Ramos.</p>
-      <a href="https://github.com/bea-codes/final-project-ai">Github</a>
+      <a href="https://github.com/bea-codes/final-project-ai" target="_blank">Github</a>
       <div class="info">
         <h3>Informações sobre o modelo:</h2>
         <ul>
           <li>Arquitetura: MobileNetV3.</li>
           <li>Tarefa: Classificação de imagens.</li>
-          <li>Formatos aceitados: png, jpg, jpeg.</li>
+          <li>Formatos aceitos: png, jpg, jpeg.</li>
         </ul>
       </div>  
       </div>
-      <form action="{{url_for('predict')}}" method="post" class="flex" enctype=multipart/form-data>
-        <p>Insira uma imagem para classificar: </p>
-        <!-- <input type="text" name="input" required="required"/> -->
+      <div class="prediction">
+        <h2>Predição do modelo</h2>
+        {{prediction_result}}
+	    </div>
+      <form action="{{url_for('predict')}}" method="post" class="" enctype=multipart/form-data>
+        <p>Insira uma imagem para classificar:</p>
         <input type="file" name=file_input id="input" required="required"/>
         <button type="submit" value="Upload" id="submit">Enviar</button>
       </form>
-      <div class="prediction">
-		<h2>Predição do modelo</h2>
-		{{prediction_result}}
-	</div>
     </div>
   </body>
   <style></style>

@@ -45,7 +45,6 @@ def alexnetPredict(img_path):
     prediction = [(classes[idx], percentage[idx].item()) for idx in indices[0][:5]]
     return prediction
 
-
 @app.route("/")
 def home():
     return render_template("index.html")
