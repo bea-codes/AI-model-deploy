@@ -35,9 +35,9 @@ def predict():
             )
         )
     
-    alexnetPredict(f"./images/{filename}")
+    class_predictions = alexnetPredict(f"./images/{filename}")
 
-    return render_template("index.html", prediction_result=[file.filename])
+    return render_template("index.html", prediction_result=class_predictions)
 
 
 if __name__ == "__main__":
