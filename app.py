@@ -25,15 +25,18 @@ transform = transforms.Compose(
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
     ]
 )
-alexnet = models.alexnet(weights='IMAGENET1K_V1')
-alexnet.eval()
+# alexnet = models.alexnet(weights='IMAGENET1K_V1')
+mobileNet = models.mobilenet_v3_small(weights="IMAGENET1K_V1")
+mobileNet.eval()
+# alexnet.eval()
 
 
 def alexnetPredict(img_path):
     img = Image.open(img_path)
     img_t = transform(img)
     batch_t = torch.unsqueeze(img_t, 0)
-    out = alexnet(batch_t)
+    # out = alexnet(batch_t)
+    out = mobileNet(batch_t)
     with open("imagenet_classes.txt") as file:
         classes = [line.strip() for line in file.readlines()]
 
