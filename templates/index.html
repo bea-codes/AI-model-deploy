@@ -26,7 +26,13 @@
       </div>
       <div class="prediction">
         <h2>Predição do modelo</h2>
-        {{prediction_result}}
+        <!-- {{prediction_result}} -->
+        <img src="{{img_path}}" alt="" id="predicted_img">
+        <ul>
+          {%for prediction in prediction_result%}
+          <li>{{prediction}}</li>
+          {%endfor%}
+        </ul>
 	    </div>
       <form action="{{url_for('predict')}}" method="post" class="" enctype=multipart/form-data>
         <p>Insira uma imagem para classificar:</p>

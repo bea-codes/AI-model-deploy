@@ -1,5 +1,7 @@
+from glob import glob
 import os
 from flask import Flask, redirect, request, render_template
+from sympy import true
 from werkzeug.utils import secure_filename
 
 import torch
@@ -7,7 +9,7 @@ from torchvision import models
 from torchvision import transforms
 from PIL import Image
 
-UPLOAD_FOLDER = "./images"
+UPLOAD_FOLDER = "./static/images"
 app = Flask(__name__)
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg"}
@@ -47,6 +49,12 @@ def alexnetPredict(img_path):
 
 @app.route("/")
 def home():
+    try:
+        images_dir = glob("./static/images/*")
+        for file in images_dir:
+            os.remove(file)
+    finally:
+        pass   
     return render_template("index.html")
 
 
@@ -63,10 +71,9 @@ def predict():
         print(filename)
         file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
 
-    class_predictions = alexnetPredict(f"./images/{filename}")
-    os.remove(f"./images/{filename}")
-
-    return render_template("index.html", prediction_result=class_predictions)
+    class_predictions = alexnetPredict(f"./static/images/{filename}")
+    # os.remove(f"./images/{filename}")
+    return render_template("index.html", prediction_result=class_predictions, img_path=f"./static/images/{file.filename}")
 
 
 if __name__ == "__main__":
